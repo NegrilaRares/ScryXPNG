@@ -1,5 +1,12 @@
-use ratatui::{layout::Alignment, style::{Style, Stylize}, symbols::border, widgets::{block::{Position, Title}, Block}};
-
+use ratatui::{
+    layout::Alignment,
+    style::{Style, Stylize},
+    symbols::border,
+    widgets::{
+        block::{Position, Title},
+        Block,
+    },
+};
 
 pub fn application_block() -> Block<'static> {
     Block::bordered()
@@ -23,9 +30,7 @@ pub fn destination_block() -> Block<'static> {
                 .alignment(Alignment::Left),
         )
         .border_set(border::ROUNDED)
-        .style(
-            Style::new().fg(ratatui::style::Color::Indexed(33))
-        )
+        .style(Style::new().fg(ratatui::style::Color::Indexed(33)))
 }
 
 pub fn list_block() -> Block<'static> {
@@ -35,9 +40,7 @@ pub fn list_block() -> Block<'static> {
                 .alignment(Alignment::Left),
         )
         .border_set(border::ROUNDED)
-        .style(
-            Style::new().fg(ratatui::style::Color::Indexed(33))
-        )
+        .style(Style::new().fg(ratatui::style::Color::Indexed(33)))
 }
 
 pub fn pick_card_block() -> Block<'static> {
@@ -47,9 +50,7 @@ pub fn pick_card_block() -> Block<'static> {
                 .alignment(Alignment::Left),
         )
         .border_set(border::ROUNDED)
-        .style(
-            Style::new().fg(ratatui::style::Color::Indexed(33))
-        )
+        .style(Style::new().fg(ratatui::style::Color::Indexed(33)))
 }
 
 pub fn help_block() -> Block<'static> {
@@ -59,19 +60,17 @@ pub fn help_block() -> Block<'static> {
                 .alignment(Alignment::Left),
         )
         .border_set(border::ROUNDED)
-        .style(
-            Style::new().fg(ratatui::style::Color::Indexed(33))
-        )
+        .style(Style::new().fg(ratatui::style::Color::Indexed(33)))
 }
 
 pub fn input_block() -> Block<'static> {
     Block::bordered()
         .title(
-            Title::from(" Input Destination: ./png_archive/... ".fg(ratatui::style::Color::Indexed(129)))
-                .alignment(Alignment::Center),
+            Title::from(
+                " Input Destination: ./png_archive/... ".fg(ratatui::style::Color::Indexed(129)),
+            )
+            .alignment(Alignment::Center),
         )
         .border_set(border::ROUNDED)
-        .style(
-            Style::new().fg(ratatui::style::Color::Indexed(146))
-        )
+        .style(Style::new().fg(ratatui::style::Color::Indexed(146)))
 }

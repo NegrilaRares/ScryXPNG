@@ -1,2 +1,28 @@
-pub mod app;
-mod backend;
+pub mod backend;
+
+use ratatui::DefaultTerminal;
+
+use crate::ui::app_data::{context::Context, Screen};
+
+pub struct App {
+    pub status: Screen,
+    pub context: Context,
+}
+
+impl App {
+    pub fn new() -> App {
+        App {
+            status: Screen::Screen0,
+            context: Context::new(),
+        }
+    }
+
+    pub fn run(&mut self, terminal: &mut DefaultTerminal) {
+        terminal.hide_cursor().unwrap();
+        while !self.context.exit {
+            self.handle_events();
+            terminal.draw(|frame| self.draw(frame)).unwrap();
+        }
+        println!("{}",self.context.destination);
+    }
+}

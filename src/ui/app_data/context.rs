@@ -1,5 +1,3 @@
-use std::sync::{Arc, LazyLock, RwLock};
-
 #[derive(Debug)]
 pub struct Context {
     pub destination: String,
@@ -29,7 +27,7 @@ impl Context {
     pub fn new() -> Context {
         Context {
             destination: String::new(),
-            input_mode: InputMode::Normal,
+            input_mode: InputMode::Editing,
             selected_index: 0,
             help: false,
             exit: false,

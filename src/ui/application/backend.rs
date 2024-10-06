@@ -1,11 +1,10 @@
 use crossterm::event::{self, Event, KeyCode, KeyEventKind};
 
-use crate::ui::app_data::status::{Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, States};
+use crate::ui::app_data::Screen;
 
-use super::app::App;
+use super::App;
 
 impl App {
-
     pub fn handle_events(&mut self) {
         if let Ok(event) = event::read() {
             match event {
@@ -15,34 +14,36 @@ impl App {
                 _ => {}
             }
         };
-        
     }
-    
+
     pub fn handle_key_event(&mut self, event: KeyCode) {
         match event {
-                KeyCode::Char('q') => {
-                    self.exit();
-                }
-                KeyCode::Char('h') => {
-                    self.toggle_help();
-                }
-                KeyCode::Left => {
-                    self.move_cursor_left();
-                }
-                KeyCode::Char('a') => {
-                    self.move_cursor_left();
-                }
-                KeyCode::Right => {
-                    self.move_cursor_right();
-                }
-                KeyCode::Char('d') => {
-                    self.move_cursor_right();
-                }
-                KeyCode::Enter => self.submit_message(),
-                KeyCode::Backspace => self.delete_char(),
-                KeyCode::Char(to_insert) => self.enter_char(to_insert),
+            KeyCode::Char('q') => {
+                self.exit();
+            }
+            KeyCode::Char('h') => {
+                self.toggle_help();
+            }
+            KeyCode::Enter => {
+                self.change_to_list();
+                self.submit_message();
+            }
+            KeyCode::Left => {
+                self.move_cursor_left();
+            }
+            KeyCode::Char('a') => {
+                self.move_cursor_left();
+            }
+            KeyCode::Right => {
+                self.move_cursor_right();
+            }
+            KeyCode::Char('d') => {
+                self.move_cursor_right();
+            }
+            KeyCode::Backspace => self.delete_char(),
+            KeyCode::Char(to_insert) => self.enter_char(to_insert),
 
-                _ => {}
+            _ => {}
         }
     }
 
@@ -51,14 +52,23 @@ impl App {
     }
 
     pub fn toggle_help(&mut self) {
-
         match self.status {
-            States::Screen0(_) => self.status = States::Screen1(Screen1::new()),
-            States::Screen1(_) => self.status = States::Screen0(Screen0::new()),
-            States::Screen2(_) => self.status = States::Screen3(Screen3::new()),
-            States::Screen3(_) => self.status = States::Screen2(Screen2::new()),
-            States::Screen4(_) => self.status = States::Screen5(Screen5::new()),
-            States::Screen5(_) => self.status = States::Screen4(Screen4::new()),
+            Screen::Screen0 => self.status = Screen::Screen1,
+            Screen::Screen1 => self.status = Screen::Screen0,
+            Screen::Screen2 => self.status = Screen::Screen3,
+            Screen::Screen3 => self.status = Screen::Screen2,
+            Screen::Screen4 => self.status = Screen::Screen5,
+            Screen::Screen5 => self.status = Screen::Screen4,
+        }
+    }
+
+    pub fn change_to_list(&mut self)
+    {
+        if self.status == Screen::Screen0 {
+            self.status = Screen::Screen2;
+        }
+        else if self.status == Screen::Screen1 {
+            self.status = Screen::Screen3;
         }
     }
 
