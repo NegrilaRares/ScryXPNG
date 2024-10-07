@@ -20,9 +20,9 @@ impl App {
     pub fn run(&mut self, terminal: &mut DefaultTerminal) {
         terminal.hide_cursor().unwrap();
         while !self.context.exit {
+            self.select_help_text();
             self.handle_events();
             terminal.draw(|frame| self.draw(frame)).unwrap();
         }
-        println!("{}",self.context.destination);
     }
 }

@@ -1,6 +1,6 @@
 use ratatui::{
     layout::{Layout, Rect},
-    prelude::Constraint::Percentage,
+    prelude::Constraint::{Fill, Length, Percentage},
 };
 
 pub fn application_area(area: Rect) -> Rect {
@@ -187,12 +187,11 @@ pub fn partition_application_area_5(application_area: Rect) -> [Rect; 4] {
 // Destination - Input Area
 //
 pub fn input_area(destination_area: Rect) -> Rect {
-    let input_vertical_layout = Layout::vertical([Percentage(40), Percentage(20), Percentage(40)]);
+    let input_vertical_layout = Layout::vertical([Fill(1), Length(3), Fill(1)]);
 
     let [_, input_veritcal, _] = input_vertical_layout.areas(destination_area);
 
-    let input_horizontal_layout =
-        Layout::horizontal([Percentage(29), Percentage(42), Percentage(29)]);
+    let input_horizontal_layout = Layout::horizontal([Fill(1), Length(60), Fill(1)]);
 
     let [_, input_area, _] = input_horizontal_layout.areas(input_veritcal);
     input_area
