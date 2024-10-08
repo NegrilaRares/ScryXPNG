@@ -196,3 +196,17 @@ pub fn input_area(destination_area: Rect) -> Rect {
     let [_, input_area, _] = input_horizontal_layout.areas(input_veritcal);
     input_area
 }
+
+//
+// List - Inner Area
+//
+pub fn list_inner_area(list_area: Rect) -> Rect {
+    let list_inner_vertical_layout = Layout::vertical([Fill(1), Length(10), Fill(1)]);
+
+    let [_, list_inner_veritcal, _] = list_inner_vertical_layout.areas(list_area);
+
+    let list_inner_horizontal_layout = Layout::horizontal([Fill(1), Length(40), Fill(1)]);
+
+    let [_, list_inner_area, _] = list_inner_horizontal_layout.areas(list_inner_veritcal);
+    list_inner_area
+}

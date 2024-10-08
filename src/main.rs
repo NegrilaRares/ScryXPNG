@@ -9,3 +9,15 @@ fn main() {
     app.run(&mut terminal);
     ratatui::restore();
 }
+
+/*
+    TODO
+        - change tab to SHIFT DONE
+        - continue list DONE
+        - process list selected
+        - list help text update
+        - read data from txt file
+        - create the pick card display
+
+        - check for bugs 
+*/

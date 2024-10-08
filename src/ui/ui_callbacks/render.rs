@@ -57,4 +57,12 @@ impl App {
             input_area,
         );
     }
+
+    pub fn list_inner_render(&mut self, frame: &mut Frame, list_inner_area: Rect) {
+        frame.render_stateful_widget(
+            self.list_inner_list(),
+            list_inner_area,
+            &mut self.context.list_state,
+        );
+    }
 }

@@ -1,4 +1,6 @@
 pub mod backend;
+pub mod commands;
+pub mod text_display;
 
 use ratatui::DefaultTerminal;
 
