@@ -11,11 +11,11 @@ pub enum Screen {
 }
 
 impl Screen {
-    pub fn _is_0(&self) -> bool {
+    pub fn is_0(&self) -> bool {
         matches!(self, Screen::Screen0)
     }
 
-    pub fn _is_1(&self) -> bool {
+    pub fn is_1(&self) -> bool {
         matches!(self, Screen::Screen1)
     }
 

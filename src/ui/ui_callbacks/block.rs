@@ -1,10 +1,10 @@
 use ratatui::{
     layout::Alignment,
-    style::{Style, Stylize},
+    style::{Color, Modifier, Style, Stylize},
     symbols::border,
     widgets::{
         block::{Position, Title},
-        Block, Padding,
+        Block, List, ListDirection, Padding,
     },
 };
 
@@ -88,13 +88,14 @@ impl App {
     pub fn input_block(&mut self) -> Block<'static> {
         let title = format!(
             " Input Destination: ./png_archive/{} ",
-            if self.context.destination_temporary.as_str().is_empty() && self.context.destination.as_str().is_empty() {
+            if self.context.destination_temporary.is_empty() && self.context.destination.is_empty()
+            {
                 "..."
-            }
-            else if !self.context.destination.as_str().is_empty() && self.context.destination_temporary.as_str().is_empty() {
+            } else if !self.context.destination.is_empty()
+                && self.context.destination_temporary.is_empty()
+            {
                 self.context.destination.as_str()
-            } 
-            else {
+            } else {
                 self.context.destination_temporary.as_str()
             }
         );
@@ -106,6 +107,44 @@ impl App {
             )
             .border_set(border::ROUNDED)
             .style(if self.context.input_mode.is_editing() {
+                style::editing_style()
+            } else {
+                style::nonediting_style()
+            })
+    }
+
+    pub fn list_inner_block(&mut self) -> Block<'static> {
+        Block::bordered()
+            .title(
+                Title::from(" Pick Card List: ".fg(ratatui::style::Color::Indexed(84)))
+                    .alignment(Alignment::Left),
+            )
+            .border_set(border::ROUNDED)
+            .style(if self.context.selected_subwindow.is_list() {
+                style::editing_style()
+            } else {
+                style::nonediting_style()
+            })
+    }
+
+    pub fn list_inner_list(&mut self) -> List<'static> {
+        List::new(self.context.list_display.clone())
+            .style(Style::default().fg(Color::Indexed(80)))
+            .block(self.list_inner_block())
+            .highlight_style(Style::default().add_modifier(Modifier::BOLD))
+            .highlight_symbol(" > ")
+            .repeat_highlight_symbol(true)
+            .direction(ListDirection::TopToBottom)
+    }
+
+    pub fn pick_card_inner_block(&mut self) -> Block<'static> {
+        Block::bordered()
+            .title(
+                Title::from(" Cards - <SET>:<NAME> ".fg(ratatui::style::Color::Indexed(220)))
+                    .alignment(Alignment::Left),
+            )
+            .border_set(border::ROUNDED)
+            .style(if self.context.selected_subwindow.is_pick_card() {
                 style::editing_style()
             } else {
                 style::nonediting_style()

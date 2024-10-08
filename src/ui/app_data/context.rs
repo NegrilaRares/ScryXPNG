@@ -1,16 +1,30 @@
-use crossterm::event::KeyCode;
-use ratatui::text::Line;
+use ratatui::{
+    text::{Line, Text},
+    widgets::ListState,
+};
+use std::{fs::DirEntry, path::PathBuf};
 
 #[derive(Debug)]
 pub struct Context {
-    pub destination: String,
-    pub destination_temporary: String,
-    pub input_mode: InputMode,
-    pub selected_index: usize,
     pub selected_subwindow: SubWindow,
     pub help_text: Vec<Line<'static>>,
     pub exit: bool,
-    pub prev_event_buf: Option<KeyCode>,
+
+    // Destination Input Necessary data
+    pub input_mode: InputMode,
+    pub destination: String,
+    pub destination_temporary: String,
+    pub selected_index: usize,
+
+    // List Necessary data
+    pub lists: Vec<DirEntry>,
+    pub list_display: Vec<Text<'static>>,
+    pub list_state: ListState,
+    pub path: Option<PathBuf>,
+    pub content: Vec<(String, String)>,
+
+    // Cards Necessary data
+    pub scroll_state: usize,
 }
 
 #[derive(Debug)]
@@ -48,6 +62,9 @@ impl InputMode {
 
 impl Context {
     pub fn new() -> Context {
+        let mut list_state = ListState::default();
+        list_state.select_first();
+
         Context {
             destination: String::new(),
             destination_temporary: String::new(),
@@ -56,7 +73,12 @@ impl Context {
             selected_subwindow: SubWindow::Destination,
             exit: false,
             help_text: vec![],
-            prev_event_buf: None,
+            lists: vec![],
+            list_display: vec![],
+            list_state,
+            path: None,
+            content: vec![],
+            scroll_state: 0,
         }
     }
 }

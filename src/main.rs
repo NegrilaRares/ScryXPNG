@@ -9,3 +9,12 @@ fn main() {
     app.run(&mut terminal);
     ratatui::restore();
 }
+
+/*
+    TODO
+        - list help text update
+        - pick cards help text update
+
+
+        - check for bugs
+*/
