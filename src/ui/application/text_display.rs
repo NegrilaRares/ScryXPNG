@@ -32,9 +32,9 @@ impl App {
                         Line::from(String::new())
                     },
                     if self.context.input_mode.is_editing() {
-                        Line::from("\n <!> Max. 24 Input character ".fg(Color::Indexed(208)))
+                        Line::from("\n <!> Max. 19 Input character ".fg(Color::Indexed(208)))
                     } else {
-                        Line::from(" <!> Max. 24 Input character ".fg(Color::Indexed(208)))
+                        Line::from(" <!> Max. 19 Input character ".fg(Color::Indexed(208)))
                     },
                 ]
             }

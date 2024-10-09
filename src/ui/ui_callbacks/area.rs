@@ -191,7 +191,7 @@ pub fn input_area(destination_area: Rect) -> Rect {
 
     let [_, input_veritcal, _] = input_vertical_layout.areas(destination_area);
 
-    let input_horizontal_layout = Layout::horizontal([Fill(1), Length(60), Fill(1)]);
+    let input_horizontal_layout = Layout::horizontal([Fill(1), Length(55), Fill(1)]);
 
     let [_, input_area, _] = input_horizontal_layout.areas(input_veritcal);
     input_area
@@ -209,4 +209,19 @@ pub fn list_inner_area(list_area: Rect) -> Rect {
 
     let [_, list_inner_area, _] = list_inner_horizontal_layout.areas(list_inner_veritcal);
     list_inner_area
+}
+
+//
+// Pick Card - Inner Area
+//
+pub fn pick_card_inner_area(pick_card_area: Rect) -> Rect {
+    let pick_card_inner_vertical_layout = Layout::vertical([Fill(1), Length(35), Fill(1)]);
+
+    let [_, pick_card_inner_veritcal, _] = pick_card_inner_vertical_layout.areas(pick_card_area);
+
+    let pick_card_inner_horizontal_layout = Layout::horizontal([Fill(1), Length(50), Fill(1)]);
+
+    let [_, pick_card_inner_area, _] =
+        pick_card_inner_horizontal_layout.areas(pick_card_inner_veritcal);
+    pick_card_inner_area
 }

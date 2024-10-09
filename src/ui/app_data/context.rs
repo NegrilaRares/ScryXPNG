@@ -2,7 +2,7 @@ use ratatui::{
     text::{Line, Text},
     widgets::ListState,
 };
-use std::fs::DirEntry;
+use std::{fs::DirEntry, path::PathBuf};
 
 #[derive(Debug)]
 pub struct Context {
@@ -20,6 +20,11 @@ pub struct Context {
     pub lists: Vec<DirEntry>,
     pub list_display: Vec<Text<'static>>,
     pub list_state: ListState,
+    pub path: Option<PathBuf>,
+    pub content: Vec<(String, String)>,
+
+    // Cards Necessary data
+    pub scroll_state: usize,
 }
 
 #[derive(Debug)]
@@ -71,6 +76,9 @@ impl Context {
             lists: vec![],
             list_display: vec![],
             list_state,
+            path: None,
+            content: vec![],
+            scroll_state: 0,
         }
     }
 }

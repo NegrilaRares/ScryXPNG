@@ -17,6 +17,7 @@ impl App {
         let help_block = self.help_block();
 
         let input_block = self.input_block();
+        let pick_card_inner_block = self.pick_card_inner_block();
 
         let application_area = area::application_area(frame.area());
 
@@ -76,6 +77,7 @@ impl App {
 
                 let input_area = area::input_area(destination_area);
                 let list_inner_area = area::list_inner_area(list_area);
+                let pick_card_inner_area = area::pick_card_inner_area(pick_card_area);
 
                 self.destination_render(frame, destination_block, destination_area);
                 self.list_render(frame, list_block, list_area);
@@ -83,6 +85,7 @@ impl App {
 
                 self.input_render(frame, input_block, input_area);
                 self.list_inner_render(frame, list_inner_area);
+                self.pick_card_inner_render(frame, pick_card_inner_block, pick_card_inner_area);
             }
             Screen::Screen5 => {
                 let [destination_area, list_area, pick_card_area, help_area] =
@@ -90,6 +93,7 @@ impl App {
 
                 let input_area = area::input_area(destination_area);
                 let list_inner_area = area::list_inner_area(list_area);
+                let pick_card_inner_area = area::pick_card_inner_area(pick_card_area);
 
                 self.destination_render(frame, destination_block, destination_area);
                 self.list_render(frame, list_block, list_area);
@@ -98,6 +102,7 @@ impl App {
 
                 self.input_render(frame, input_block, input_area);
                 self.list_inner_render(frame, list_inner_area);
+                self.pick_card_inner_render(frame, pick_card_inner_block, pick_card_inner_area);
             }
         }
     }

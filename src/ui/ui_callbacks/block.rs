@@ -120,13 +120,11 @@ impl App {
                     .alignment(Alignment::Left),
             )
             .border_set(border::ROUNDED)
-            .style(
-                // if self.context.selected_subwindow.is_list() {
-                //     style::editing_style()
-                // } else {
-                // }
-                style::nonediting_style(),
-            )
+            .style(if self.context.selected_subwindow.is_list() {
+                style::editing_style()
+            } else {
+                style::nonediting_style()
+            })
     }
 
     pub fn list_inner_list(&mut self) -> List<'static> {
@@ -137,5 +135,19 @@ impl App {
             .highlight_symbol(" > ")
             .repeat_highlight_symbol(true)
             .direction(ListDirection::TopToBottom)
+    }
+
+    pub fn pick_card_inner_block(&mut self) -> Block<'static> {
+        Block::bordered()
+            .title(
+                Title::from(" Cards - <SET>:<NAME> ".fg(ratatui::style::Color::Indexed(220)))
+                    .alignment(Alignment::Left),
+            )
+            .border_set(border::ROUNDED)
+            .style(if self.context.selected_subwindow.is_pick_card() {
+                style::editing_style()
+            } else {
+                style::nonediting_style()
+            })
     }
 }

@@ -12,12 +12,9 @@ fn main() {
 
 /*
     TODO
-        - change tab to SHIFT DONE
-        - continue list DONE
-        - process list selected
         - list help text update
-        - read data from txt file
-        - create the pick card display
+        - pick cards help text update
 
-        - check for bugs 
+
+        - check for bugs
 */
