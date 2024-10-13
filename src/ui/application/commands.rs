@@ -1,7 +1,16 @@
-use std::fs;
+use std::{
+    fs::{self, File},
+    io::{copy, Write},
+    os::windows::thread,
+    path::Path,
+    time::Duration,
+};
+
+use reqwest::header::{HeaderMap, HeaderValue, ACCEPT, USER_AGENT};
+use tokio::time::sleep;
 
 use crate::ui::app_data::{
-    context::{InputMode, SubWindow},
+    context::{Card, InputMode, SubWindow},
     Screen,
 };
 
@@ -19,7 +28,6 @@ impl App {
             self.context.selected_subwindow = SubWindow::List;
         } else if self.status == Screen::Screen1 {
             self.read_list_dir();
-            self.select_list_display();
             self.status = Screen::Screen3;
             self.context.selected_subwindow = SubWindow::List;
         } else if (self.status == Screen::Screen4
@@ -29,7 +37,6 @@ impl App {
             && !self.context.selected_subwindow.is_list()
         {
             self.read_list_dir();
-            self.select_list_display();
             self.context.selected_subwindow = SubWindow::List;
         }
     }
@@ -153,6 +160,7 @@ impl App {
     }
 
     pub fn select_list_display(&mut self) {
+        self.context.list_display.clear();
         for (index, path) in self.context.lists.iter().enumerate() {
             self.context.list_display.insert(
                 index,
@@ -209,18 +217,97 @@ impl App {
     }
 
     pub fn cards_select_next(&mut self) {
-        self.context.scroll_state += 1;
+        self.context.scroll_state = self.context.scroll_state.saturating_add(1);
+        self.context.scroll_struct_state = self
+            .context
+            .scroll_struct_state
+            .position(self.context.scroll_state);
     }
 
     pub fn cards_select_previous(&mut self) {
-        self.context.scroll_state -= 1;
+        self.context.scroll_state = self.context.scroll_state.saturating_sub(1);
+        self.context.scroll_struct_state = self
+            .context
+            .scroll_struct_state
+            .position(self.context.scroll_state);
     }
 
     pub fn cards_select_first(&mut self) {
         self.context.scroll_state = 0;
+        self.context.scroll_struct_state = self
+            .context
+            .scroll_struct_state
+            .position(self.context.scroll_state);
     }
 
     pub fn cards_select_last(&mut self) {
         self.context.scroll_state = self.context.content.len() - 33;
+        self.context.scroll_struct_state = self
+            .context
+            .scroll_struct_state
+            .position(self.context.scroll_state);
+    }
+
+    pub fn fetch_cards_url(&mut self) {
+        for (index, (set, name)) in self.context.content.iter().enumerate() {
+            tokio::runtime::Builder::new_multi_thread()
+                .enable_all()
+                .build()
+                .unwrap()
+                .block_on(async {
+                    let url = format!(
+                        "https://api.scryfall.com/cards/named?exact={}&set={}",
+                        name.replace(" ", "%20"),
+                        set
+                    );
+
+                    let mut headers = HeaderMap::new();
+                    headers.insert(USER_AGENT, HeaderValue::from_static("ScryXPNG/0.4"));
+                    headers.insert(ACCEPT, HeaderValue::from_static("application/json"));
+
+                    let response = reqwest::Client::new()
+                        .get(url)
+                        .headers(headers)
+                        .send()
+                        .await
+                        .expect("Failed to send request")
+                        .json::<Card>()
+                        .await
+                        .expect("Failed to parse response");
+
+                    self.context.card_url.insert(index, response);
+                });
+        }
+    }
+
+    pub fn download_images(&mut self) {
+        tokio::runtime::Builder::new_multi_thread()
+            .enable_all()
+            .build()
+            .unwrap()
+            .block_on(async {
+
+                fs::create_dir_all(format!("png_archive/png/{}"
+                    , self.context.destination
+                    ))
+                        .unwrap();
+
+                for (index, card) in self.context.card_url.iter().enumerate() {
+                    let url = card.image_uris.png.clone();
+                    let response = reqwest::get(&url).await.unwrap();
+
+                    let file_path = format!(
+                        "png_archive/png/{}/{}_{}_{}.png",
+                        self.context.destination,
+                        index + 1,
+                        self.context.content.get(index).unwrap().0.to_uppercase(),
+                        self.context.content.get(index).unwrap().1.replace(" ", "-")
+                    );
+
+                    let mut file = File::create(Path::new(&file_path)).unwrap();
+                    let content = response.bytes().await.unwrap();
+                    file.write_all(&content).unwrap();
+                }
+            });
     }
 }

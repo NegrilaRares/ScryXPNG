@@ -48,12 +48,25 @@ impl App {
                     Line::from(
                         " Press <↑ or ↓> to move up and down the list".fg(Color::Indexed(35)),
                     ),
+                    Line::from(
+                        " Press <Enter> to display card of the list".fg(Color::Indexed(117)),
+                    ),
                 ]
             }
             crate::ui::app_data::context::SubWindow::PickCard => {
                 vec![
                     Line::from("Keybinds:"),
                     Line::from(" Press <Q> to quit application"),
+                    Line::from(
+                        " Press <SHIFT + (1-3)> to switch active subwindow".fg(Color::Indexed(135)),
+                    ),
+                    Line::from(
+                        " Press <↑ or ↓> to move up and down the card list".fg(Color::Indexed(35)),
+                    ),
+                    Line::from(
+                        " <!> Press <Enter> to start png fetching process".fg(Color::Indexed(208)),
+                    ),
+                    Line::from(" Press <Enter> to download card images".fg(Color::Indexed(117))),
                 ]
             }
         };

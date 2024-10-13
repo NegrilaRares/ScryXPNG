@@ -1,7 +1,8 @@
 use ratatui::{
     text::{Line, Text},
-    widgets::ListState,
+    widgets::{ListState, ScrollbarState},
 };
+use serde::Deserialize;
 use std::{fs::DirEntry, path::PathBuf};
 
 #[derive(Debug)]
@@ -25,6 +26,10 @@ pub struct Context {
 
     // Cards Necessary data
     pub scroll_state: usize,
+    pub scroll_struct_state: ScrollbarState,
+
+    // Scryfall API
+    pub card_url: Vec<Card>,
 }
 
 #[derive(Debug)]
@@ -46,6 +51,16 @@ impl SubWindow {
     pub fn is_pick_card(&self) -> bool {
         matches!(self, SubWindow::PickCard)
     }
+}
+
+#[derive(serde::Deserialize, Debug)]
+pub struct Card {
+    pub image_uris: ImageUris,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct ImageUris {
+    pub png: String,
 }
 
 #[derive(Debug)]
@@ -79,6 +94,8 @@ impl Context {
             path: None,
             content: vec![],
             scroll_state: 0,
+            scroll_struct_state: ScrollbarState::new(0),
+            card_url: vec![],
         }
     }
 }

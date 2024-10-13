@@ -1,82 +1,82 @@
-blb%Abrade%
-blb%Alchemist's Talent%
-blb%Arcane Signet%
-blb%Beast Within%
-blb%Bello, Bard of the Brambles%
-blb%Berserkers' Onslaught%
-blb%Big Score%
-blb%Blasphemous Act%
-blb%Bootleggers' Stash%
-blb%Brightcap Badger%
-blb%Burnished Hart%
-blb%Chaos Warp%
-blb%Cinder Glade%
-blb%Command Tower%
-blb%Copperline Gorge%
-blb%Cultivate%
-blb%Decimate%
-blb%Domri, Anarch of Bolas%
-blb%Esika's Chariot%
-blb%Etali, Primal Storm%
-blb%Evercoat Ursine%
-blb%Evolving Wilds%
-blb%Exotic Orchard%
-blb%Explore%
-blb%Farseek%
-blb%Fellwar Stone%
-blb%Forgotten Cave%
-blb%Game Trail%
-blb%Garruk's Packleader%
-blb%Garruk's Uprising%
-blb%Ghalta, Primal Hunger%
-blb%Gilded Lotus%
-blb%Goreclaw, Terror of Qal Sisma%
-blb%Gratuitous Violence%
-blb%Greater Good%
-blb%Grothama, All-Devouring%
-blb%Grumgully, the Generous%
-blb%Gruul Signet%
-blb%Gruul Turf%
-blb%Harmonize%
-blb%Hedron Archive%
-blb%Karplusan Forest%
-blb%Kodama of the East Tree%
-blb%Llanowar Loamspeaker%
-blb%Lotus Cobra%
-blb%Mind Stone%
-blb%Mossfire Valley%
-blb%Mosswort Bridge%
-blb%Outpost Siege%
-blb%Path of Ancestry%
-blb%Path of Discovery%
-blb%Primeval Bounty%
-blb%Prosperous Bandit%
-blb%Pyreswipe Hawk%
-blb%Raging Ravine%
-blb%Rain of Riches%
-blb%Rampaging Baloths%
-blb%Rampant Growth%
-blb%Reliquary Tower%
-blb%Rolling Hamsphere%
-blb%Rootbound Crag%
-blb%Sakura-Tribe Elder%
-blb%Sheltered Thicket%
-blb%Sol Ring%
-blb%Spine of Ish Sah%
-blb%Starstorm%
-blb%Sunbird's Invocation%
-blb%Talisman of Impulse%
+blc%Abrade%
+blc%Alchemist's Talent%
+blc%Arcane Signet%
+blc%Beast Within%
+blc%Bello, Bard of the Brambles%
+blc%Berserkers' Onslaught%
+blc%Big Score%
+blc%Blasphemous Act%
+blc%Bootleggers' Stash%
+blc%Brightcap Badger%
+blc%Burnished Hart%
+blc%Chaos Warp%
+blc%Cinder Glade%
+blc%Command Tower%
+blc%Copperline Gorge%
+blc%Cultivate%
+blc%Decimate%
+blc%Domri, Anarch of Bolas%
+blc%Esika's Chariot%
+blc%Etali, Primal Storm%
+blc%Evercoat Ursine%
+blc%Evolving Wilds%
+blc%Exotic Orchard%
+blc%Explore%
+blc%Farseek%
+blc%Fellwar Stone%
+blc%Forgotten Cave%
+blc%Game Trail%
+blc%Garruk's Packleader%
+blc%Garruk's Uprising%
+blc%Ghalta, Primal Hunger%
+blc%Gilded Lotus%
+blc%Goreclaw, Terror of Qal Sisma%
+blc%Gratuitous Violence%
+blc%Greater Good%
+blc%Grothama, All-Devouring%
+blc%Grumgully, the Generous%
+blc%Gruul Signet%
+blc%Gruul Turf%
+blc%Harmonize%
+blc%Hedron Archive%
+blc%Karplusan Forest%
+blc%Kodama of the East Tree%
+blc%Llanowar Loamspeaker%
+blc%Lotus Cobra%
+blc%Mind Stone%
+blc%Mossfire Valley%
+blc%Mosswort Bridge%
+blc%Outpost Siege%
+blc%Path of Ancestry%
+blc%Path of Discovery%
+blc%Primeval Bounty%
+blc%Prosperous Bandit%
+blc%Pyreswipe Hawk%
+blc%Raging Ravine%
+blc%Rain of Riches%
+blc%Rampaging Baloths%
+blc%Rampant Growth%
+blc%Reliquary Tower%
+blc%Rolling Hamsphere%
+blc%Rootbound Crag%
+blc%Sakura-Tribe Elder%
+blc%Sheltered Thicket%
+blc%Sol Ring%
+blc%Spine of Ish Sah%
+blc%Starstorm%
+blc%Sunbird's Invocation%
+blc%Talisman of Impulse%
 blb%Teapot Slinger%
-blb%Temple of Abandon%
-blb%Tendershoot Dryad%
-blb%Terramorphic Expanse%
-blb%Thickest in the Thicket%
-blb%Thought Vessel%
-blb%Thran Dynamo%
-blb%Trailtracker Scout%
-blb%Tranquil Thicket%
-blb%Unnatural Growth%
+blc%Temple of Abandon%
+blc%Tendershoot Dryad%
+blc%Terramorphic Expanse%
+blc%Thickest in the Thicket%
+blc%Thought Vessel%
+blc%Thran Dynamo%
+blc%Trailtracker Scout%
+blc%Tranquil Thicket%
+blc%Unnatural Growth%
 blb%Wandertale Mentor%
-blb%Warstorm Surge%
-blb%Wildsear, Scouring Maw%
-blb%Wooded Ridgeline%
+blc%Warstorm Surge%
+blc%Wildsear, Scouring Maw%
+blc%Wooded Ridgeline%

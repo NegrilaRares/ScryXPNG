@@ -94,7 +94,8 @@ impl App {
                     } else if self.context.selected_subwindow.is_pick_card()
                         && !self.context.content.is_empty()
                     {
-                        // SCRYFALL API
+                        self.fetch_cards_url();
+                        self.download_images();
                     }
                 }
                 _ => {}
