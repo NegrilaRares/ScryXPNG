@@ -1,13 +1,9 @@
 use std::{
-    fs::{self, File},
-    io::{copy, Write},
-    os::windows::thread,
-    path::Path,
-    time::Duration,
+    fs::{self, File}, io::Write, path::Path
 };
 
+use log::debug;
 use reqwest::header::{HeaderMap, HeaderValue, ACCEPT, USER_AGENT};
-use tokio::time::sleep;
 
 use crate::ui::app_data::{
     context::{Card, InputMode, SubWindow},
@@ -52,6 +48,16 @@ impl App {
             && !self.context.selected_subwindow.is_pick_card()
         {
             self.context.selected_subwindow = SubWindow::PickCard;
+        }
+    }
+
+    pub fn change_to_destination(&mut self) {
+        if self.status == Screen::Screen4 && self.context.selected_subwindow.is_pick_card(){
+            self.status = Screen::Screen0;
+            self.context.selected_subwindow = SubWindow::Destination;
+        } else if self.status == Screen::Screen5 && self.context.selected_subwindow.is_pick_card(){
+            self.status = Screen::Screen1;
+            self.context.selected_subwindow = SubWindow::Destination;
         }
     }
 
@@ -274,6 +280,8 @@ impl App {
                         .json::<Card>()
                         .await
                         .expect("Failed to parse response");
+
+                    debug!("Card JSON NR#{} : {response:?}",index);
 
                     self.context.card_url.insert(index, response);
                 });

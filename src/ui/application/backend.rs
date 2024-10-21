@@ -96,6 +96,7 @@ impl App {
                     {
                         self.fetch_cards_url();
                         self.download_images();
+                        self.change_to_destination();
                     }
                 }
                 _ => {}
