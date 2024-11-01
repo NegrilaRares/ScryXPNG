@@ -1,5 +1,4 @@
 /target
-/png_archive/png
-/png_archive/upscaled
-/png_archive/pdf
 .env
+/card_lists
+/png_archive
